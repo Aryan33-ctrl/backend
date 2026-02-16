@@ -20,8 +20,9 @@ const server = http.createServer((req, res) => {
             body+=chunk;
         })
         req.on("end",()=>{
-            fs.writeFileSync("./file.txt",body,()=>{
+            fs.appendFile("./file.txt",body,()=>{
                 res.writeHead(201,"DATA WRITTEN");
+                res.end();
             })
         })
     }
