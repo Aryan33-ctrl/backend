@@ -41,8 +41,10 @@ const server = http.createServer((req, res) => {
                     notes = JSON.parse(data);
                 }
 
-                const parsedBody = JSON.parse(body);
-                notes.push(parsedBody);
+
+                const newnote={id:Date.now(),
+                ...parsedBody}
+                notes.push(newnote);
 
                 fs.writeFile(filePath, JSON.stringify(notes), (err) => {
                     if (err) {
